@@ -2,26 +2,34 @@ $(document).ready(function(){
   var $body = $('body');
   $body.html('');
 
-  // load initial tweets
-  var current = 0;
+  var index = 0;
 
   var showTweets = function() {
-    while(current < streams.home.length) {
-      var tweet = streams.home[current];
-      var $tweet = $('<div></div>');
-      $tweet.text('@' + tweet.user + ': ' + tweet.message + ' ' + tweet.created_at);
-      $tweet.appendTo($body);
-      current++;
+    while(index < streams.home.length) {
+      var tweet = streams.home[index];
+      var $tweet = $('<div class=\'tweet\'></div>');
+      $tweet.prependTo($body);
+
+      var $user = $('<div class=\'user\'></div>');
+      $user.text('@' + tweet.user);
+      $user.appendTo($tweet);
+
+      var $message = $('<div class=\'message\'></div>');
+      $message.text(tweet.message);
+      $message.appendTo($tweet);
+
+      var $date = $('<div class=\'date\'></div>');
+      $date.text(tweet.created_at);
+      $date.appendTo($tweet);
+
+      index++;
     }
   };
-
   showTweets();
 
   var refreshTweets = function()
   {
     showTweets();
-
-    // perpetually refresh
     setTimeout(refreshTweets, 2000);
   }
   refreshTweets();

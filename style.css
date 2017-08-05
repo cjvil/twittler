@@ -1,0 +1,23 @@
+* {
+  font-family: sans-serif;
+}
+
+.tweet {
+  background-color: #a3c2c2;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 60%;
+}
+
+.user {
+
+}
+
+.message {
+
+}
+
+.date {
+  font-size: small;
+}
