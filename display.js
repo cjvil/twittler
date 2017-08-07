@@ -59,4 +59,9 @@ $(document).ready(function(){
     filterByUser(filter);
   });
 
+  $body.on('click', 'button', function() {
+    filter = '';
+    $tweetContainer.find('.hidden').removeClass('hidden');
+  })
+
 });
