@@ -1,14 +1,18 @@
 $(document).ready(function(){
   var $body = $('body');
-  $body.html('');
+  //$body.html('');
+
+  var $tweetContainer = $body.find('#tweetContainer');
 
   var index = 0;
+  var filter ='';
 
   var showTweets = function() {
     while(index < streams.home.length) {
       var tweet = streams.home[index];
       var $tweet = $('<div class=\'tweet\'></div>');
-      $tweet.prependTo($body);
+      $tweet.addClass(tweet.user);
+      $tweet.prependTo($tweetContainer);
 
       var $user = $('<div class=\'user\'></div>');
       $user.text('@' + tweet.user);
@@ -27,10 +31,28 @@ $(document).ready(function(){
   };
   showTweets();
 
+
+  var filterByUser = function(filter) {
+    if (filter !== '') {
+      $('.tweet').filter(':not(' + filter + ')').addClass('hidden');
+    }
+  }
+
+
   var refreshTweets = function()
   {
     showTweets();
+    filterByUser(filter); // filter newly added tweets
     setTimeout(refreshTweets, 2000);
   }
+  
   refreshTweets();
+
+  // need to use delegated binding to work on newly 
+  // generated elements
+  $tweetContainer.on('click', '.user', function() {
+    filter = '.' + ($(this).text().substring(1));
+    filterByUser(filter);
+  });
+
 });
