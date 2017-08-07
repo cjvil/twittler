@@ -6,6 +6,7 @@ $(document).ready(function(){
 
   var index = 0;
   var filter ='';
+  var maxTweets = 10;
 
   var showTweets = function() {
     while(index < streams.home.length) {
@@ -44,6 +45,9 @@ $(document).ready(function(){
     showTweets();
     filterByUser(filter); // filter newly added tweets
     setTimeout(refreshTweets, 2000);
+    // limit number of visible tweets
+    $tweetContainer.find('.tweet:visible').slice(maxTweets).remove();
+
   }
   
   refreshTweets();
