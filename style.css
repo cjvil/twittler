@@ -1,25 +1,52 @@
 * {
   font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  background-color: #d3dee6;
+}
+
+#tweetContainer {
+  width: 60%;
+  float: left;
+}
+
+#nav {
+  display: inline-block;
+  padding: 20px;
+  float:left;
+  margin-right: 20px;
+}
+
+#nav li {
+  list-style: none;
+  padding-top: 10px;
 }
 
 .tweet {
-  background-color: #a3c2c2;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  width: 60%;
+  background-color: white;
+  margin-top: 1px;
+  padding: 20px;
+  width: 100%; 
 }
 
-.user {
-
+.user, #all, #nav li {
+  cursor: pointer;
+  font-weight: bold;
+  color: #003b79;
 }
 
 .message {
-
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .date {
   font-size: small;
+  color: #003b79;
 }
 
 .hidden {

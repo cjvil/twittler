@@ -1,6 +1,5 @@
 $(document).ready(function(){
   var $body = $('body');
-  //$body.html('');
 
   var $tweetContainer = $body.find('#tweetContainer');
 
@@ -39,7 +38,6 @@ $(document).ready(function(){
     }
   }
 
-
   var refreshTweets = function()
   {
     showTweets();
@@ -52,6 +50,17 @@ $(document).ready(function(){
   
   refreshTweets();
 
+  // load users into nav bar
+  Object.keys(streams.users).forEach( function(user) {
+    $('<li class="' + user + '">@' + user + '</div>').appendTo('#nav');
+  });
+
+  var clearFilter = function() {
+    filter = '';
+    $tweetContainer.find('.hidden').removeClass('hidden');
+  };
+
+  // filter tweets by user
   // need to use delegated binding to work on newly 
   // generated elements
   $tweetContainer.on('click', '.user', function() {
@@ -59,9 +68,13 @@ $(document).ready(function(){
     filterByUser(filter);
   });
 
-  $body.on('click', 'button', function() {
-    filter = '';
-    $tweetContainer.find('.hidden').removeClass('hidden');
-  })
+  $('#nav').on('click', 'li', function() {
+    clearFilter();
+    filter = '.' + ($(this).text().substring(1));
+    filterByUser(filter);
+  });
 
+  $('#all').on('click', function() {
+    clearFilter();
+  })
 });
